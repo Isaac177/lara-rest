@@ -36,7 +36,17 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
         });
+
+        //Get Articles by ID or Slug
+
+        Route::bind('article', function ($value) {
+            return \App\Models\Article::where('id', $value)->orWhere('slug', $value)->firstOrFail();
+        });
     }
+
+
+
+
 
     /**
      * Configure the rate limiters for the application.
