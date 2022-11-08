@@ -6,6 +6,7 @@ use App\Traits\HasAuthor;
 use App\Traits\ModelHelpers;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use PharIo\Manifest\Author;
 
 class Article extends Model
 {
@@ -47,5 +48,9 @@ class Article extends Model
     public function authorId(): string
     {
         return $this->author_id;
+    }
+
+    public function author() {
+        return $this->belongsTo(User::class);
     }
 }

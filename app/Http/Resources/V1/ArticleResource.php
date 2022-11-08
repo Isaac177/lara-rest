@@ -17,10 +17,10 @@ class ArticleResource extends JsonResource
     {
         return [
             'type' => 'articles',
-            'id' => $this->id(),
+            'id' => $this->id,
             'attributes' => [
-                'title' => $this->title(),
-                'slug' => $this->slug(),
+                'title' => $this->title,
+                'slug' => $this->slug,
                 'created_at' => $this->created_at,
             ],
             /*'relationships' => [
@@ -33,11 +33,11 @@ class ArticleResource extends JsonResource
                 ],
             ],*/
             'relationships' => [
-                'author' =>  AuthorResource::make($this->author()),
+                'author' =>  new AuthorResource($this->author),
             ],
             'links' => [
-                'self' => route('articles.show', ['article' => $this->id()]),
-                'related' => route('articles.show', ['article' => $this->slug()]),
+                'self' => route('articles.show', ['article' => $this->id]),
+                'related' => route('articles.show', ['article' => $this->slug]),
             ],
         ];
     }
